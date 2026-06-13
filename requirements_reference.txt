@@ -1,0 +1,6 @@
+python==3.13.5
+numpy==2.3.5
+pandas==2.2.3
+scikit-learn==1.8.0
+matplotlib==3.10.8
+yfinance  # live-download dependency used by supplied notebooks; version should be pinned in final author environment
