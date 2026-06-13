@@ -1,0 +1,2 @@
+Cumulative_Return,Annualized_Return,Sharpe,Max_Drawdown,Average_Turnover,Average_Number_of_Stocks,Rebalance_Count,Start,End,h,l,k,Fallback_Count,label
+2.2651192182561872,0.184739396750218,0.9495799964174202,-0.36164292145195975,0.18373678295328802,177.47619047619048,84,2019-01-02,2025-12-30,21,0.2,3,0,orig

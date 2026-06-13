@@ -1,0 +1,93 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{pdflscape}
+\usepackage{hyperref}
+\title{Supplementary Diagnostics for Representative Market-State Stock Selection}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Scope}
+This supplement contains detailed diagnostic tables moved out of the main manuscript to keep the LNCS conference version within the 14-page limit. The k-ablation and forward-split diagnostics use the recovered main fixed-universe return matrix included in the replication package; they are intended as sanity checks rather than byte-for-byte reproductions of the saved Step 4 ranking artifact.
+
+\section*{S1. Step 4 Momentum and Benchmark Comparison}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrrrrrr}
+\toprule
+Method & $h$ & $l$ & Cum. & Ann. & Sharpe & MDD & Turnover \\
+\midrule
+Mapper & 21 & 20\% & 401.27\% & 17.51\% & 0.970 & -35.84\% & 16.79\% \\
+Global DBSCAN & 21 & 20\% & 379.06\% & 16.98\% & 0.944 & -36.62\% & 15.14\% \\
+PCA-KMeans & 21 & 20\% & 421.88\% & 17.99\% & 0.998 & -35.51\% & 17.23\% \\
+Equal Weight Universe & 63 & -- & 348.45\% & 16.21\% & 0.916 & -37.39\% & 5.76\% \\
+S\&P 500 & 21 & -- & 242.64\% & 13.12\% & 0.773 & -33.92\% & 0.00\% \\
+Momentum 21D & 42 & 40\% & 279.00\% & 14.27\% & 0.852 & -36.06\% & 60.30\% \\
+Momentum 63D & 21 & 20\% & 305.02\% & 15.03\% & 0.858 & -33.14\% & 47.11\% \\
+Momentum 126D & 42 & 20\% & 390.98\% & 17.27\% & 0.924 & -36.48\% & 46.99\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{S2. PCA-KMeans k-Ablation}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{rrrrrrr}
+\toprule
+$k$ & Cum. & Ann. & Sharpe & MDD & Turnover & Avg. stocks \\
+\midrule
+1 & 350.03\% & 16.29\% & 0.892 & -37.80\% & 16.99\% & 70.9 \\
+2 & 329.21\% & 15.74\% & 0.899 & -36.58\% & 22.18\% & 127.8 \\
+3 & 409.10\% & 17.73\% & 0.991 & -35.54\% & 17.08\% & 175.2 \\
+4 & 348.75\% & 16.25\% & 0.926 & -36.80\% & 21.05\% & 210.1 \\
+5 & 363.85\% & 16.64\% & 0.948 & -36.08\% & 15.32\% & 236.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{S3. Simple Forward-Split Diagnostic}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llrrrrrrr}
+\toprule
+Period & Role & $h$ & $l$ & Cum. & Ann. & Sharpe & MDD & Turnover \\
+\midrule
+2016--2018 & calibration-selected config & 21 & 20\% & 50.41\% & 14.64\% & 1.114 & -18.88\% & 17.40\% \\
+2019--2025 & fixed holdout evaluation & 21 & 20\% & 226.51\% & 18.47\% & 0.950 & -36.16\% & 18.37\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{S4. Daily Sharpe Bootstrap Intervals}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llrll}
+\toprule
+Method & Configuration & Mean & 90\% CI & 95\% CI \\
+\midrule
+\multicolumn{5}{l}{\textit{2020-start robustness}} \\
+PCA-KMeans & $h=63$, $l=40\%$, $k=3$ & 0.659 & [0.010, 1.306] & [-0.078, 1.457] \\
+Mapper & $h=63$, $l=40\%$, $k=3$ & 0.644 & [-0.045, 1.311] & [-0.131, 1.421] \\
+Equal Weight & $h=63$ & 0.695 & [0.019, 1.383] & [-0.118, 1.517] \\
+S\&P 500 & $h=21$ & 0.737 & [0.068, 1.382] & [-0.030, 1.577] \\
+Momentum 21D & $h=42$, $l=40\%$ & 0.727 & [0.067, 1.401] & [-0.119, 1.575] \\
+\midrule
+\multicolumn{5}{l}{\textit{2023-onward diagnostic}} \\
+PCA-KMeans & $h=21$, $l=40\%$, $k=3$ & 0.910 & [0.013, 1.801] & [-0.120, 1.981] \\
+Mapper & $h=42$, $l=40\%$, $k=3$ & 0.793 & [-0.104, 1.741] & [-0.227, 1.903] \\
+Equal Weight & $h=63$ & 0.895 & [-0.000, 1.824] & [-0.133, 1.996] \\
+S\&P 500 & $h=21$ & 1.416 & [0.553, 2.370] & [0.417, 2.577] \\
+Momentum 126D & $h=63$, $l=40\%$ & 0.928 & [0.038, 1.837] & [-0.086, 2.085] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
